@@ -1,3 +1,5 @@
 venv
 data/*
 frontend
+__pycache__
+qmix_checkpoints

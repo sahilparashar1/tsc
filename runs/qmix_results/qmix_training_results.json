@@ -1,0 +1,19 @@
+{
+  "configuration": {
+    "learning_rate": 0.0005,
+    "discount_factor": 0.99,
+    "target_update_freq": 200,
+    "agent_hidden_dim": 64,
+    "agent_rnn_hidden_dim": 64,
+    "batch_size": 32,
+    "num_episodes": 50,
+    "num_agents": 17,
+    "obs_dim": 21,
+    "state_dim": 357
+  },
+  "final_results": {
+    "steps": 400,
+    "vehicles": 332,
+    "avg_waiting_step": 3.991643333116277,
+    "avg_speed_step": 12.219685631554936,
+    "episode_reward": 
