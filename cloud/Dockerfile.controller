@@ -1,0 +1,36 @@
+# Cloud Layer - Controller Agent Dockerfile
+# Python 3.13.2
+
+# NOTE: If torch has compatibility issues with 3.13,
+# uncomment the following line and comment the 3.13 line:
+# FROM python:3.12-slim
+
+FROM python:3.13.2-slim
+
+LABEL maintainer="Traffic Control System"
+LABEL description="Controller Agent - QMIX Global Brain"
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy source code
+COPY src/ ./src/
+
+# Environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+
+# Default command
+CMD ["python", "-m", "src.agents.controller_agent"]

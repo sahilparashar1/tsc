@@ -1,0 +1,49 @@
+# Edge Device Dockerfile for Raspberry Pi
+# Python 3.13.2 - ARM64 Architecture
+
+# NOTE: If ultralytics or onnxruntime have compatibility issues with 3.13,
+# uncomment the following line and comment the 3.13 line:
+# FROM python:3.12-slim
+
+FROM python:3.13.2-slim
+
+# Build for ARM64 (Raspberry Pi 4/5)
+LABEL maintainer="Traffic Control System"
+LABEL description="Edge Device - YOLO Traffic Detection for Raspberry Pi"
+LABEL platform="linux/arm64"
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies for OpenCV and camera
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    libgomp1 \
+    v4l-utils \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements first for caching
+COPY requirements.txt .
+
+# Install Python dependencies
+# Note: onnxruntime for ARM may require special build
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy source code
+COPY src/ ./src/
+
+# Copy YOLO model (mounted or copied during deployment)
+# The model should be at /models/yolo11n_best.onnx
+RUN mkdir -p /models
+
+# Environment variables
+ENV PYTHONUNBUFFERED=1
+ENV MQTT_BROKER=mqtt-broker
+ENV MQTT_PORT=1883
+
+# Default command
+CMD ["python", "-m", "src.camera_loop", "--intersection_id", "1", "--camera_id", "cam_0", "--interval", "5"]

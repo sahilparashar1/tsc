@@ -1,0 +1,113 @@
+version: '3.8'
+
+services:
+  # MQTT Broker - Eclipse Mosquitto
+  mqtt-broker:
+    image: eclipse-mosquitto:2.0
+    container_name: traffic_mqtt_broker
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    restart: unless-stopped
+    networks:
+      - traffic_network
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: traffic_postgres
+    environment:
+      POSTGRES_USER: traffic_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-traffic_secure_pwd}
+      POSTGRES_DB: traffic_control
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    restart: unless-stopped
+    networks:
+      - traffic_network
+
+  # Controller Agent - QMIX Global Brain
+  controller-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.controller
+    container_name: traffic_controller
+    environment:
+      MQTT_BROKER: mqtt-broker
+      MQTT_PORT: 1883
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: traffic_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-traffic_secure_pwd}
+      POSTGRES_DB: traffic_control
+      NUM_REGIONS: 6
+      NUM_AGENTS_PER_REGION: 4
+    depends_on:
+      - mqtt-broker
+      - postgres
+    restart: unless-stopped
+    networks:
+      - traffic_network
+
+  # Regional Agent Template (use docker-compose scale or deploy 6 instances)
+  regional-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.regional
+    environment:
+      MQTT_BROKER: mqtt-broker
+      MQTT_PORT: 1883
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: traffic_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-traffic_secure_pwd}
+      POSTGRES_DB: traffic_control
+    depends_on:
+      - mqtt-broker
+      - postgres
+      - controller-agent
+    deploy:
+      replicas: 6
+    restart: unless-stopped
+    networks:
+      - traffic_network
+
+  # API Gateway - FastAPI Backend for Dashboard
+  api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.gateway
+    container_name: traffic_api_gateway
+    ports:
+      - "8000:8000"
+    environment:
+      MQTT_BROKER: mqtt-broker
+      MQTT_PORT: 1883
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: traffic_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-traffic_secure_pwd}
+      POSTGRES_DB: traffic_control
+      API_HOST: 0.0.0.0
+      API_PORT: 8000
+    depends_on:
+      - mqtt-broker
+      - postgres
+    restart: unless-stopped
+    networks:
+      - traffic_network
+
+volumes:
+  postgres_data:
+
+
+networks:
+  traffic_network:
+    driver: bridge

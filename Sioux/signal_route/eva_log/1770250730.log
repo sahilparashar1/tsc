@@ -1,0 +1,5 @@
+2026-02-05 05:48:50,094 [INFO] Evaluation: policy type: default, random seeds: 10000,20000,30000,40000,50000,60000,70000,80000,90000,100000
+2026-02-05 05:48:52,134 [INFO] Evaluation: s dim: 1421, a dim 85899345920, s dim ls: [46, 36, 14, 22, 38, 38, 30, 22, 28, 34, 28, 30, 12, 14, 14, 28, 24, 1, 1, 2, 2, 1, 2, 2, 2, 2, 1, 1, 1], a dim ls: [5, 4, 2, 2, 4, 4, 2, 2, 2, 4, 2, 4, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+2026-02-05 05:49:15,052 [WARNING] From c:\Users\sahil\Desktop\rl-signal-routing-sumo-main\rl-signal-routing-sumo-main\agents\models.py:271: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2026-02-05 05:49:19,711 [ERROR] Can not find old checkpoint for Sioux/signal_route/model/

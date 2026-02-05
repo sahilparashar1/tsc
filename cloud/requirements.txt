@@ -1,0 +1,17 @@
+# Cloud Layer Requirements
+# Python 3.13.2 (or 3.12 fallback for torch compatibility)
+
+# Core ML
+torch>=2.1.0
+numpy>=1.26.0
+
+# Database
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.9
+
+# MQTT Communication
+paho-mqtt>=2.0.0
+
+# Utilities
+python-dateutil>=2.8.2
+uuid>=1.30
