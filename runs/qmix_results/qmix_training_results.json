@@ -5,15 +5,1821 @@
     "target_update_freq": 200,
     "agent_hidden_dim": 64,
     "agent_rnn_hidden_dim": 64,
-    "batch_size": 32,
-    "num_episodes": 50,
+    "batch_size": 16,
+    "num_episodes": 200,
     "num_agents": 17,
     "obs_dim": 21,
     "state_dim": 357
   },
   "final_results": {
-    "steps": 400,
-    "vehicles": 332,
-    "avg_waiting_step": 3.991643333116277,
-    "avg_speed_step": 12.219685631554936,
-    "episode_reward": 
+    "steps": 3600,
+    "vehicles": 3918,
+    "avg_waiting_step": 0.0,
+    "avg_speed_step": 6.124936755370817,
+    "episode_reward": -38074.0,
+    "avg_waiting_vehicle": 166.88973966309342,
+    "avg_speed_vehicle": 9.632857898429577
+  },
+  "episode_results": [
+    {
+      "steps": 3600,
+      "vehicles": 3906,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.674024673456957,
+      "episode_reward": -46017.0,
+      "avg_waiting_vehicle": 227.47823860727087,
+      "avg_speed_vehicle": 8.701392413516492
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3857,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.209770110065329,
+      "episode_reward": -44982.0,
+      "avg_waiting_vehicle": 257.7612133782733,
+      "avg_speed_vehicle": 8.249791541238345
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3878,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.716231887650222,
+      "episode_reward": -47066.0,
+      "avg_waiting_vehicle": 234.73929860752966,
+      "avg_speed_vehicle": 8.540903458660098
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3832,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.018646350007177,
+      "episode_reward": -47491.0,
+      "avg_waiting_vehicle": 266.06915448851777,
+      "avg_speed_vehicle": 8.2148550566107
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3912,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.018877106926524,
+      "episode_reward": -41807.0,
+      "avg_waiting_vehicle": 210.21728016359918,
+      "avg_speed_vehicle": 8.8911560408449
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3832,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.371814814066725,
+      "episode_reward": -45782.0,
+      "avg_waiting_vehicle": 249.36169102296452,
+      "avg_speed_vehicle": 8.514958584940377
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3824,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.4275697153475875,
+      "episode_reward": -45128.0,
+      "avg_waiting_vehicle": 241.03007322175733,
+      "avg_speed_vehicle": 8.54697257733437
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.490997615532823,
+      "episode_reward": -45221.0,
+      "avg_waiting_vehicle": 234.78739152628893,
+      "avg_speed_vehicle": 8.461720123289169
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3774,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.057194938107876,
+      "episode_reward": -44642.0,
+      "avg_waiting_vehicle": 259.61844197138316,
+      "avg_speed_vehicle": 8.607999929995716
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3854,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.2499898704824215,
+      "episode_reward": -45460.0,
+      "avg_waiting_vehicle": 245.91385573430202,
+      "avg_speed_vehicle": 8.49317624220863
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3859,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.617262893641722,
+      "episode_reward": -41084.0,
+      "avg_waiting_vehicle": 217.58642135268204,
+      "avg_speed_vehicle": 8.839387203534143
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3846,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.321429487288633,
+      "episode_reward": -49490.0,
+      "avg_waiting_vehicle": 257.79641185647426,
+      "avg_speed_vehicle": 8.281682515170054
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3901,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.15149779185022,
+      "episode_reward": -42306.0,
+      "avg_waiting_vehicle": 207.87951807228916,
+      "avg_speed_vehicle": 9.027465678099626
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.294834516114675,
+      "episode_reward": -48832.0,
+      "avg_waiting_vehicle": 247.46707503828483,
+      "avg_speed_vehicle": 8.37180136822148
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3872,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.0885185851255805,
+      "episode_reward": -44978.0,
+      "avg_waiting_vehicle": 254.40702479338842,
+      "avg_speed_vehicle": 8.259850275947917
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3895,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.162062197500553,
+      "episode_reward": -43567.0,
+      "avg_waiting_vehicle": 245.9540436456996,
+      "avg_speed_vehicle": 8.185999658360442
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3817,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.220687924256562,
+      "episode_reward": -43395.0,
+      "avg_waiting_vehicle": 254.22294996070212,
+      "avg_speed_vehicle": 8.517200043105511
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3876,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.501017334850822,
+      "episode_reward": -46707.0,
+      "avg_waiting_vehicle": 233.27296181630547,
+      "avg_speed_vehicle": 8.676536160115614
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.817550582149577,
+      "episode_reward": -43945.0,
+      "avg_waiting_vehicle": 213.8050025523226,
+      "avg_speed_vehicle": 8.800857424663537
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3915,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.549356172278166,
+      "episode_reward": -44907.0,
+      "avg_waiting_vehicle": 227.80996168582377,
+      "avg_speed_vehicle": 8.592716655273387
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3851,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.9171610882894736,
+      "episode_reward": -45095.0,
+      "avg_waiting_vehicle": 255.15476499610492,
+      "avg_speed_vehicle": 8.121439413614484
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3901,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.552984633160078,
+      "episode_reward": -42970.0,
+      "avg_waiting_vehicle": 231.450910023071,
+      "avg_speed_vehicle": 8.577574016755749
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3887,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.393265261358309,
+      "episode_reward": -44846.0,
+      "avg_waiting_vehicle": 241.6781579624389,
+      "avg_speed_vehicle": 8.412789283677586
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3904,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.290690322419105,
+      "episode_reward": -42303.0,
+      "avg_waiting_vehicle": 204.11449795081967,
+      "avg_speed_vehicle": 9.033882749087615
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.658410563366852,
+      "episode_reward": -49816.0,
+      "avg_waiting_vehicle": 233.48928024502297,
+      "avg_speed_vehicle": 8.491331013303004
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3790,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.992247719011062,
+      "episode_reward": -47556.0,
+      "avg_waiting_vehicle": 263.23905013192615,
+      "avg_speed_vehicle": 8.457214673378626
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3763,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.0780033011424655,
+      "episode_reward": -42911.0,
+      "avg_waiting_vehicle": 253.78129152272123,
+      "avg_speed_vehicle": 8.312105878199194
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.379263307980512,
+      "episode_reward": -43439.0,
+      "avg_waiting_vehicle": 240.39152628892293,
+      "avg_speed_vehicle": 8.474305419097433
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.540415115735625,
+      "episode_reward": -45826.0,
+      "avg_waiting_vehicle": 235.35630423685555,
+      "avg_speed_vehicle": 8.385136503866635
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3828,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.145814208610062,
+      "episode_reward": -47794.0,
+      "avg_waiting_vehicle": 262.623301985371,
+      "avg_speed_vehicle": 8.327437886218835
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3851,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.8200825650378403,
+      "episode_reward": -48972.0,
+      "avg_waiting_vehicle": 272.4593612048819,
+      "avg_speed_vehicle": 7.822269378111826
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3881,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.8265471141616767,
+      "episode_reward": -49834.0,
+      "avg_waiting_vehicle": 278.56609121360475,
+      "avg_speed_vehicle": 7.925983704243962
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3893,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.2502853096642745,
+      "episode_reward": -48423.0,
+      "avg_waiting_vehicle": 246.87875674287181,
+      "avg_speed_vehicle": 8.351778553528378
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3849,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.6453598580932067,
+      "episode_reward": -52583.0,
+      "avg_waiting_vehicle": 294.0818394388153,
+      "avg_speed_vehicle": 7.7615483247107155
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3821,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.919656251358865,
+      "episode_reward": -49495.0,
+      "avg_waiting_vehicle": 274.35775974875685,
+      "avg_speed_vehicle": 8.33270416824389
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.754432228576454,
+      "episode_reward": -41445.0,
+      "avg_waiting_vehicle": 222.6324655436447,
+      "avg_speed_vehicle": 8.736787588270358
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3781,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.867362405246022,
+      "episode_reward": -50832.0,
+      "avg_waiting_vehicle": 276.97037820682357,
+      "avg_speed_vehicle": 8.193828400445
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3872,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.1551438679416925,
+      "episode_reward": -46046.0,
+      "avg_waiting_vehicle": 258.96720041322317,
+      "avg_speed_vehicle": 8.14786833067331
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.14492902741378,
+      "episode_reward": -47515.0,
+      "avg_waiting_vehicle": 255.58499234303216,
+      "avg_speed_vehicle": 8.080970616115287
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3883,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.015691959012197,
+      "episode_reward": -49693.0,
+      "avg_waiting_vehicle": 267.40020602626834,
+      "avg_speed_vehicle": 8.051943650430983
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3855,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.224758303944589,
+      "episode_reward": -48576.0,
+      "avg_waiting_vehicle": 254.6134889753567,
+      "avg_speed_vehicle": 8.431110688013357
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3759,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.5854091112255997,
+      "episode_reward": -46588.0,
+      "avg_waiting_vehicle": 290.5908486299548,
+      "avg_speed_vehicle": 8.033324192823526
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3867,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.250966872063985,
+      "episode_reward": -48754.0,
+      "avg_waiting_vehicle": 254.63925523661754,
+      "avg_speed_vehicle": 8.198303629436621
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3794,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.725679289456905,
+      "episode_reward": -53449.0,
+      "avg_waiting_vehicle": 291.3558249868213,
+      "avg_speed_vehicle": 7.923592661151033
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3882,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.172055137894339,
+      "episode_reward": -46511.0,
+      "avg_waiting_vehicle": 251.38176197836168,
+      "avg_speed_vehicle": 8.31924148093424
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3844,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.257313057835182,
+      "episode_reward": -47681.0,
+      "avg_waiting_vehicle": 257.77757544224767,
+      "avg_speed_vehicle": 8.3935325127997
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3893,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.980450640792563,
+      "episode_reward": -42958.0,
+      "avg_waiting_vehicle": 215.95658874903674,
+      "avg_speed_vehicle": 8.909649261977682
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3813,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.7564576766226287,
+      "episode_reward": -49016.0,
+      "avg_waiting_vehicle": 289.9548911618148,
+      "avg_speed_vehicle": 8.123860264471137
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3758,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.2692016273789335,
+      "episode_reward": -50468.0,
+      "avg_waiting_vehicle": 306.6609898882384,
+      "avg_speed_vehicle": 7.638705390820866
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3863,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.2857087851860625,
+      "episode_reward": -44308.0,
+      "avg_waiting_vehicle": 254.93606005695057,
+      "avg_speed_vehicle": 8.458758405756335
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3806,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.9995235027484473,
+      "episode_reward": -46817.0,
+      "avg_waiting_vehicle": 264.8594324750394,
+      "avg_speed_vehicle": 8.305642714103099
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3815,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.6623029285831135,
+      "episode_reward": -50179.0,
+      "avg_waiting_vehicle": 288.03958060288335,
+      "avg_speed_vehicle": 7.9415714148256775
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3759,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.5467253324034242,
+      "episode_reward": -49336.0,
+      "avg_waiting_vehicle": 286.04256451183824,
+      "avg_speed_vehicle": 8.119462903665147
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3837,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.596765560841715,
+      "episode_reward": -49354.0,
+      "avg_waiting_vehicle": 274.6757883763357,
+      "avg_speed_vehicle": 7.850454816685685
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3868,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.289222248962115,
+      "episode_reward": -44788.0,
+      "avg_waiting_vehicle": 247.23629782833507,
+      "avg_speed_vehicle": 8.479536987950503
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3788,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.07913469715725,
+      "episode_reward": -43410.0,
+      "avg_waiting_vehicle": 256.389651531151,
+      "avg_speed_vehicle": 8.511853481364016
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3884,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.8213006932373625,
+      "episode_reward": -43309.0,
+      "avg_waiting_vehicle": 258.43795056642637,
+      "avg_speed_vehicle": 8.07033901500678
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3814,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.8802875339366634,
+      "episode_reward": -52071.0,
+      "avg_waiting_vehicle": 278.97771368641844,
+      "avg_speed_vehicle": 8.196977742536898
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3784,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.7657735735897044,
+      "episode_reward": -45150.0,
+      "avg_waiting_vehicle": 270.4217758985201,
+      "avg_speed_vehicle": 8.270100775103531
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3784,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.4236961050977204,
+      "episode_reward": -54028.0,
+      "avg_waiting_vehicle": 309.11945031712474,
+      "avg_speed_vehicle": 7.811158519202659
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3782,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.7784245799028717,
+      "episode_reward": -45425.0,
+      "avg_waiting_vehicle": 273.28344791115813,
+      "avg_speed_vehicle": 8.219529234579593
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3819,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.9429985564201244,
+      "episode_reward": -46665.0,
+      "avg_waiting_vehicle": 262.01832940560354,
+      "avg_speed_vehicle": 8.3361866252464
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3865,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.804219823779032,
+      "episode_reward": -46661.0,
+      "avg_waiting_vehicle": 266.6928848641656,
+      "avg_speed_vehicle": 7.996830905954649
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3849,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.8656709486732033,
+      "episode_reward": -48937.0,
+      "avg_waiting_vehicle": 268.1808261886204,
+      "avg_speed_vehicle": 8.122729867566399
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3832,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.6817807238007907,
+      "episode_reward": -46423.0,
+      "avg_waiting_vehicle": 286.60855949895614,
+      "avg_speed_vehicle": 7.971245255652693
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3917,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.352113391509944,
+      "episode_reward": -45458.0,
+      "avg_waiting_vehicle": 242.51901965790145,
+      "avg_speed_vehicle": 8.252800007516917
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3835,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.14765913025976,
+      "episode_reward": -45212.0,
+      "avg_waiting_vehicle": 261.6096479791395,
+      "avg_speed_vehicle": 8.485868983757657
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3777,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.288232591828115,
+      "episode_reward": -45841.0,
+      "avg_waiting_vehicle": 253.179772306063,
+      "avg_speed_vehicle": 8.756882724226816
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3779,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.6272351064999477,
+      "episode_reward": -47246.0,
+      "avg_waiting_vehicle": 271.5342683249537,
+      "avg_speed_vehicle": 7.945649445163273
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3851,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.801429349809963,
+      "episode_reward": -48677.0,
+      "avg_waiting_vehicle": 276.4063879511815,
+      "avg_speed_vehicle": 7.946629399024929
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3811,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.7056610384481425,
+      "episode_reward": -49177.0,
+      "avg_waiting_vehicle": 282.0658619784833,
+      "avg_speed_vehicle": 7.997932408938503
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3833,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.323964061725355,
+      "episode_reward": -47517.0,
+      "avg_waiting_vehicle": 253.5747456300548,
+      "avg_speed_vehicle": 8.546211662326321
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3812,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.6369375001452227,
+      "episode_reward": -54251.0,
+      "avg_waiting_vehicle": 285.9008394543547,
+      "avg_speed_vehicle": 7.867015808970608
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3876,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.925779965050966,
+      "episode_reward": -49633.0,
+      "avg_waiting_vehicle": 267.40892672858615,
+      "avg_speed_vehicle": 8.021616209685586
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3852,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.638816767902722,
+      "episode_reward": -49681.0,
+      "avg_waiting_vehicle": 288.1313603322949,
+      "avg_speed_vehicle": 7.923343906033647
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3813,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.839312948485259,
+      "episode_reward": -48580.0,
+      "avg_waiting_vehicle": 285.4982953055337,
+      "avg_speed_vehicle": 8.134045140443112
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3842,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.9948520008133,
+      "episode_reward": -46480.0,
+      "avg_waiting_vehicle": 258.12024986985944,
+      "avg_speed_vehicle": 8.26223104458582
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3831,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.63184082479138,
+      "episode_reward": -52911.0,
+      "avg_waiting_vehicle": 301.25476376925087,
+      "avg_speed_vehicle": 7.693075589164831
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3858,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.685905900792404,
+      "episode_reward": -45645.0,
+      "avg_waiting_vehicle": 231.53758424053913,
+      "avg_speed_vehicle": 8.731802648756684
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3794,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.574952675923392,
+      "episode_reward": -47726.0,
+      "avg_waiting_vehicle": 281.7778070637849,
+      "avg_speed_vehicle": 7.8834110284354875
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3861,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.159130411549737,
+      "episode_reward": -48561.0,
+      "avg_waiting_vehicle": 261.8883708883709,
+      "avg_speed_vehicle": 8.354945055672019
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3860,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.252797901300294,
+      "episode_reward": -47453.0,
+      "avg_waiting_vehicle": 248.96139896373057,
+      "avg_speed_vehicle": 8.504787647902974
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3849,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.9330122579865456,
+      "episode_reward": -46201.0,
+      "avg_waiting_vehicle": 271.7609768771109,
+      "avg_speed_vehicle": 8.13047204248513
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3904,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.319384976720615,
+      "episode_reward": -44716.0,
+      "avg_waiting_vehicle": 249.50563524590163,
+      "avg_speed_vehicle": 8.247932499925893
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3773,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.8897138374794094,
+      "episode_reward": -50038.0,
+      "avg_waiting_vehicle": 278.77126954677976,
+      "avg_speed_vehicle": 8.175153684805741
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3832,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.908876528035384,
+      "episode_reward": -44150.0,
+      "avg_waiting_vehicle": 268.749739039666,
+      "avg_speed_vehicle": 8.266898750964646
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3907,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.55755540266357,
+      "episode_reward": -42123.0,
+      "avg_waiting_vehicle": 229.1366777578705,
+      "avg_speed_vehicle": 8.515226005513515
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3864,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.294322168640031,
+      "episode_reward": -47705.0,
+      "avg_waiting_vehicle": 248.777950310559,
+      "avg_speed_vehicle": 8.559770249347801
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3907,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.21092366937042,
+      "episode_reward": -47750.0,
+      "avg_waiting_vehicle": 250.2800102380343,
+      "avg_speed_vehicle": 8.196696881585739
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3865,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.941150534737323,
+      "episode_reward": -50126.0,
+      "avg_waiting_vehicle": 269.5260025873221,
+      "avg_speed_vehicle": 8.239148087387012
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3865,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.072439974976384,
+      "episode_reward": -41657.0,
+      "avg_waiting_vehicle": 254.4895213454075,
+      "avg_speed_vehicle": 8.343537835027682
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3855,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.042889712646071,
+      "episode_reward": -47346.0,
+      "avg_waiting_vehicle": 263.9141374837873,
+      "avg_speed_vehicle": 8.315959199643986
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3789,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.7362944065422394,
+      "episode_reward": -47384.0,
+      "avg_waiting_vehicle": 275.43811031934547,
+      "avg_speed_vehicle": 7.982220796659741
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3908,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.4686893407664146,
+      "episode_reward": -45232.0,
+      "avg_waiting_vehicle": 236.56653019447288,
+      "avg_speed_vehicle": 8.585889441512224
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3873,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.2023780331089435,
+      "episode_reward": -50346.0,
+      "avg_waiting_vehicle": 256.2047508391428,
+      "avg_speed_vehicle": 8.454610130293863
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3889,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.7159721545716007,
+      "episode_reward": -47265.0,
+      "avg_waiting_vehicle": 277.6014399588583,
+      "avg_speed_vehicle": 8.028043181073874
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3851,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.205071009466867,
+      "episode_reward": -43462.0,
+      "avg_waiting_vehicle": 249.47442222799273,
+      "avg_speed_vehicle": 8.490628369826236
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3854,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.298048627770142,
+      "episode_reward": -44012.0,
+      "avg_waiting_vehicle": 246.19252724442137,
+      "avg_speed_vehicle": 8.516242653977494
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3904,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.373407427674315,
+      "episode_reward": -45376.0,
+      "avg_waiting_vehicle": 236.70440573770492,
+      "avg_speed_vehicle": 8.416410948748796
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3808,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.7023644468554053,
+      "episode_reward": -48955.0,
+      "avg_waiting_vehicle": 284.77284663865544,
+      "avg_speed_vehicle": 8.21223157319468
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3783,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.4975043051980017,
+      "episode_reward": -44354.0,
+      "avg_waiting_vehicle": 290.9809674861221,
+      "avg_speed_vehicle": 7.981183225350891
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3829,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.648980443558128,
+      "episode_reward": -49994.0,
+      "avg_waiting_vehicle": 290.98276312353096,
+      "avg_speed_vehicle": 7.875732745297576
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3846,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.059484325164957,
+      "episode_reward": -42280.0,
+      "avg_waiting_vehicle": 252.89911596463858,
+      "avg_speed_vehicle": 8.324516089655896
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3830,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.242379674936806,
+      "episode_reward": -46995.0,
+      "avg_waiting_vehicle": 253.55013054830286,
+      "avg_speed_vehicle": 8.468354933952238
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.266834337940086,
+      "episode_reward": -48328.0,
+      "avg_waiting_vehicle": 248.89918325676365,
+      "avg_speed_vehicle": 8.282602358455767
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3791,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.034434826307564,
+      "episode_reward": -41555.0,
+      "avg_waiting_vehicle": 256.0506462674756,
+      "avg_speed_vehicle": 8.408785345032802
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.154497863924461,
+      "episode_reward": -46972.0,
+      "avg_waiting_vehicle": 253.23200612557426,
+      "avg_speed_vehicle": 8.25302233553638
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3806,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.055760554327448,
+      "episode_reward": -46310.0,
+      "avg_waiting_vehicle": 261.5851287440883,
+      "avg_speed_vehicle": 8.256941701711057
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3861,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.374042183954974,
+      "episode_reward": -44121.0,
+      "avg_waiting_vehicle": 243.01061901061902,
+      "avg_speed_vehicle": 8.389854934800132
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3869,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.387231046528288,
+      "episode_reward": -46086.0,
+      "avg_waiting_vehicle": 245.5270095631946,
+      "avg_speed_vehicle": 8.566835965047296
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3915,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.34000522893377,
+      "episode_reward": -47256.0,
+      "avg_waiting_vehicle": 245.18773946360153,
+      "avg_speed_vehicle": 8.226325211588167
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3833,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.8724612172605033,
+      "episode_reward": -47005.0,
+      "avg_waiting_vehicle": 261.0023480302635,
+      "avg_speed_vehicle": 8.212058435237909
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3866,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.248384475299268,
+      "episode_reward": -47696.0,
+      "avg_waiting_vehicle": 250.45887221934817,
+      "avg_speed_vehicle": 8.443177325639008
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3909,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.904689785030383,
+      "episode_reward": -45500.0,
+      "avg_waiting_vehicle": 269.474034279867,
+      "avg_speed_vehicle": 7.799471427138026
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3916,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.646147697049237,
+      "episode_reward": -45873.0,
+      "avg_waiting_vehicle": 229.30362614913176,
+      "avg_speed_vehicle": 8.576602925483884
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3862,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.1295780331781025,
+      "episode_reward": -45963.0,
+      "avg_waiting_vehicle": 258.1118591403418,
+      "avg_speed_vehicle": 8.169069014019563
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3882,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.7592813322072027,
+      "episode_reward": -45101.0,
+      "avg_waiting_vehicle": 263.2939206594539,
+      "avg_speed_vehicle": 7.963796607240321
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3771,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.617766499755685,
+      "episode_reward": -48140.0,
+      "avg_waiting_vehicle": 285.01034208432776,
+      "avg_speed_vehicle": 8.090311850607769
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.2838036045876375,
+      "episode_reward": -43424.0,
+      "avg_waiting_vehicle": 243.79887697805003,
+      "avg_speed_vehicle": 8.306601991711208
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3859,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.093640246975966,
+      "episode_reward": -47837.0,
+      "avg_waiting_vehicle": 261.6444674786214,
+      "avg_speed_vehicle": 7.992094702548304
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3889,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.151192116691125,
+      "episode_reward": -48733.0,
+      "avg_waiting_vehicle": 261.1727950629982,
+      "avg_speed_vehicle": 8.106451155383201
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3866,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.385926823288637,
+      "episode_reward": -43597.0,
+      "avg_waiting_vehicle": 243.00155199172272,
+      "avg_speed_vehicle": 8.611841627139848
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3860,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.7064686108674465,
+      "episode_reward": -44014.0,
+      "avg_waiting_vehicle": 224.4160621761658,
+      "avg_speed_vehicle": 8.860923099826518
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3797,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.188844380080603,
+      "episode_reward": -48127.0,
+      "avg_waiting_vehicle": 261.4298130102713,
+      "avg_speed_vehicle": 8.444754066532504
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3905,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.530602318936748,
+      "episode_reward": -42220.0,
+      "avg_waiting_vehicle": 229.7044814340589,
+      "avg_speed_vehicle": 8.533209906833612
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3835,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.873606222993653,
+      "episode_reward": -46307.0,
+      "avg_waiting_vehicle": 268.8406779661017,
+      "avg_speed_vehicle": 8.25594385943161
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3809,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.8839755184519773,
+      "episode_reward": -44524.0,
+      "avg_waiting_vehicle": 267.533473352586,
+      "avg_speed_vehicle": 8.170539746531887
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3915,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.040206237549823,
+      "episode_reward": -44554.0,
+      "avg_waiting_vehicle": 254.90676883780333,
+      "avg_speed_vehicle": 8.084503185180441
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3873,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.198455100069892,
+      "episode_reward": -43660.0,
+      "avg_waiting_vehicle": 248.20526723470178,
+      "avg_speed_vehicle": 8.246430128547294
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.4156176353298315,
+      "episode_reward": -41602.0,
+      "avg_waiting_vehicle": 195.7414497192445,
+      "avg_speed_vehicle": 9.072053578442826
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3905,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.8892610221434945,
+      "episode_reward": -42855.0,
+      "avg_waiting_vehicle": 219.6934699103713,
+      "avg_speed_vehicle": 8.814629623112275
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.144771826032221,
+      "episode_reward": -40782.0,
+      "avg_waiting_vehicle": 207.82159264931087,
+      "avg_speed_vehicle": 9.021841632042731
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.828456436718295,
+      "episode_reward": -41957.0,
+      "avg_waiting_vehicle": 217.49974476773863,
+      "avg_speed_vehicle": 8.712257936056634
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3906,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.228059619224142,
+      "episode_reward": -45674.0,
+      "avg_waiting_vehicle": 242.29672299027138,
+      "avg_speed_vehicle": 8.345227799137247
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3801,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.061669909275731,
+      "episode_reward": -44860.0,
+      "avg_waiting_vehicle": 267.45593264930284,
+      "avg_speed_vehicle": 8.33462865131481
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3862,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.138924666231332,
+      "episode_reward": -43405.0,
+      "avg_waiting_vehicle": 254.193423096841,
+      "avg_speed_vehicle": 8.225655777199732
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3905,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.435867201725969,
+      "episode_reward": -46089.0,
+      "avg_waiting_vehicle": 239.56798975672214,
+      "avg_speed_vehicle": 8.364864703944002
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3818,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.141422063390783,
+      "episode_reward": -45734.0,
+      "avg_waiting_vehicle": 259.73127291775796,
+      "avg_speed_vehicle": 8.357455486622085
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3806,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.8846499508815935,
+      "episode_reward": -44661.0,
+      "avg_waiting_vehicle": 263.94587493431425,
+      "avg_speed_vehicle": 8.112408247700674
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3832,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.863558507987886,
+      "episode_reward": -47229.0,
+      "avg_waiting_vehicle": 274.018006263048,
+      "avg_speed_vehicle": 8.088575004315235
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3861,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.766067611732354,
+      "episode_reward": -43726.0,
+      "avg_waiting_vehicle": 225.93317793317794,
+      "avg_speed_vehicle": 8.785014316139126
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3826,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.495963339244024,
+      "episode_reward": -45520.0,
+      "avg_waiting_vehicle": 244.55776267642446,
+      "avg_speed_vehicle": 8.606341598434266
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3862,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.930614802715072,
+      "episode_reward": -46673.0,
+      "avg_waiting_vehicle": 260.680217503884,
+      "avg_speed_vehicle": 8.149652335569304
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3851,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.194421085442438,
+      "episode_reward": -48672.0,
+      "avg_waiting_vehicle": 261.72942092962865,
+      "avg_speed_vehicle": 8.205774762754753
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3841,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.562885873991471,
+      "episode_reward": -45606.0,
+      "avg_waiting_vehicle": 239.28065607914607,
+      "avg_speed_vehicle": 8.775324740013469
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.82704675166672,
+      "episode_reward": -43056.0,
+      "avg_waiting_vehicle": 220.1822358346095,
+      "avg_speed_vehicle": 8.818247048965564
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3906,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.390020545251732,
+      "episode_reward": -46981.0,
+      "avg_waiting_vehicle": 243.26804915514592,
+      "avg_speed_vehicle": 8.3589022513259
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3890,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.9879355332119633,
+      "episode_reward": -47124.0,
+      "avg_waiting_vehicle": 260.61002570694086,
+      "avg_speed_vehicle": 8.042920433169911
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.6923977833484445,
+      "episode_reward": -40152.0,
+      "avg_waiting_vehicle": 219.78586013272079,
+      "avg_speed_vehicle": 8.584248520472027
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3756,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.9953001720550296,
+      "episode_reward": -41803.0,
+      "avg_waiting_vehicle": 260.0055910543131,
+      "avg_speed_vehicle": 8.443506537343357
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.19032126032957,
+      "episode_reward": -42751.0,
+      "avg_waiting_vehicle": 203.32108218478817,
+      "avg_speed_vehicle": 8.876290949292192
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3798,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.776055666275983,
+      "episode_reward": -45217.0,
+      "avg_waiting_vehicle": 276.9083728278041,
+      "avg_speed_vehicle": 8.114724487003226
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3786,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.250428828549346,
+      "episode_reward": -45787.0,
+      "avg_waiting_vehicle": 247.9215530903328,
+      "avg_speed_vehicle": 8.524507300536564
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.840981499392541,
+      "episode_reward": -39500.0,
+      "avg_waiting_vehicle": 217.44308320571722,
+      "avg_speed_vehicle": 8.715253526296946
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3882,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.420268296444606,
+      "episode_reward": -40386.0,
+      "avg_waiting_vehicle": 237.74420401854715,
+      "avg_speed_vehicle": 8.437786328350374
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.123382006981768,
+      "episode_reward": -44007.0,
+      "avg_waiting_vehicle": 211.47549770290965,
+      "avg_speed_vehicle": 8.89888449065035
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3797,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.1603577102077365,
+      "episode_reward": -42087.0,
+      "avg_waiting_vehicle": 247.86410323939953,
+      "avg_speed_vehicle": 8.54543609314279
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3854,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.76315467712437,
+      "episode_reward": -46386.0,
+      "avg_waiting_vehicle": 280.6302542812662,
+      "avg_speed_vehicle": 8.005549867643317
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3804,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.708176394288799,
+      "episode_reward": -40854.0,
+      "avg_waiting_vehicle": 275.7029442691903,
+      "avg_speed_vehicle": 8.224684910823827
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.266592947583421,
+      "episode_reward": -44640.0,
+      "avg_waiting_vehicle": 244.7912200102093,
+      "avg_speed_vehicle": 8.29763160685216
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3872,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.895473840180184,
+      "episode_reward": -46647.0,
+      "avg_waiting_vehicle": 269.1807851239669,
+      "avg_speed_vehicle": 7.995867984666909
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3841,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.896156490341157,
+      "episode_reward": -47731.0,
+      "avg_waiting_vehicle": 269.44077063264774,
+      "avg_speed_vehicle": 8.164583658903954
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3882,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.47393629288364,
+      "episode_reward": -46195.0,
+      "avg_waiting_vehicle": 240.70144255538384,
+      "avg_speed_vehicle": 8.411047593242207
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3890,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.932541779062272,
+      "episode_reward": -43073.0,
+      "avg_waiting_vehicle": 247.75681233933162,
+      "avg_speed_vehicle": 8.020213344143155
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3892,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.2438577348308115,
+      "episode_reward": -40877.0,
+      "avg_waiting_vehicle": 204.02954779033917,
+      "avg_speed_vehicle": 9.13347404158272
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3888,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.018541988628658,
+      "episode_reward": -41235.0,
+      "avg_waiting_vehicle": 210.70576131687244,
+      "avg_speed_vehicle": 8.97155701112895
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3887,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.021561154863357,
+      "episode_reward": -42748.0,
+      "avg_waiting_vehicle": 248.95652173913044,
+      "avg_speed_vehicle": 8.223984430404569
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3873,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.308687986530818,
+      "episode_reward": -41338.0,
+      "avg_waiting_vehicle": 240.7733023495998,
+      "avg_speed_vehicle": 8.480642319381577
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3879,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.314849218598834,
+      "episode_reward": -41914.0,
+      "avg_waiting_vehicle": 247.63083268883733,
+      "avg_speed_vehicle": 8.362685059664756
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.276502008356757,
+      "episode_reward": -40185.0,
+      "avg_waiting_vehicle": 201.2003573251659,
+      "avg_speed_vehicle": 9.136414901255673
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3911,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.385634023660623,
+      "episode_reward": -43655.0,
+      "avg_waiting_vehicle": 239.5658399386346,
+      "avg_speed_vehicle": 8.302103737469901
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3871,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.079377352026487,
+      "episode_reward": -48020.0,
+      "avg_waiting_vehicle": 260.51304572461896,
+      "avg_speed_vehicle": 8.312975140592068
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3874,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.194212445787086,
+      "episode_reward": -46676.0,
+      "avg_waiting_vehicle": 261.2023748064017,
+      "avg_speed_vehicle": 8.258236128670601
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3831,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.487303029762359,
+      "episode_reward": -44071.0,
+      "avg_waiting_vehicle": 245.2237013834508,
+      "avg_speed_vehicle": 8.566869023231243
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3903,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.42368509669833,
+      "episode_reward": -42265.0,
+      "avg_waiting_vehicle": 238.7045862157315,
+      "avg_speed_vehicle": 8.442080007315793
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.877987189648867,
+      "episode_reward": -41007.0,
+      "avg_waiting_vehicle": 212.60617662072485,
+      "avg_speed_vehicle": 8.672766419936346
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3857,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.614660608761238,
+      "episode_reward": -44079.0,
+      "avg_waiting_vehicle": 235.54679802955664,
+      "avg_speed_vehicle": 8.682026003023363
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3853,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.897887618942735,
+      "episode_reward": -47809.0,
+      "avg_waiting_vehicle": 273.3475214118868,
+      "avg_speed_vehicle": 8.158220122409421
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3836,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.318440825396894,
+      "episode_reward": -44625.0,
+      "avg_waiting_vehicle": 248.21011470281545,
+      "avg_speed_vehicle": 8.646585445398713
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3883,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 3.963610136511762,
+      "episode_reward": -49031.0,
+      "avg_waiting_vehicle": 270.5825392737574,
+      "avg_speed_vehicle": 7.943071453628661
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3862,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.218343925768587,
+      "episode_reward": -44831.0,
+      "avg_waiting_vehicle": 255.4062661833247,
+      "avg_speed_vehicle": 8.33618788523521
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3892,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.553160084727756,
+      "episode_reward": -37837.0,
+      "avg_waiting_vehicle": 193.06372045220965,
+      "avg_speed_vehicle": 9.401909097898958
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3843,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.260976713689961,
+      "episode_reward": -44002.0,
+      "avg_waiting_vehicle": 244.87795992714027,
+      "avg_speed_vehicle": 8.61696044296958
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3911,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.517757257626513,
+      "episode_reward": -42061.0,
+      "avg_waiting_vehicle": 231.48606494502684,
+      "avg_speed_vehicle": 8.522350818647727
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3887,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.029631385430594,
+      "episode_reward": -40655.0,
+      "avg_waiting_vehicle": 208.42629277077438,
+      "avg_speed_vehicle": 9.08307539162486
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3907,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.243818778681391,
+      "episode_reward": -43684.0,
+      "avg_waiting_vehicle": 242.43255694906577,
+      "avg_speed_vehicle": 8.301020709562845
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3904,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.812281713173564,
+      "episode_reward": -43179.0,
+      "avg_waiting_vehicle": 225.79559426229508,
+      "avg_speed_vehicle": 8.694359011532542
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.072533488134867,
+      "episode_reward": -40444.0,
+      "avg_waiting_vehicle": 208.2179683511996,
+      "avg_speed_vehicle": 8.951514926093088
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3918,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.425863947852023,
+      "episode_reward": -40780.0,
+      "avg_waiting_vehicle": 198.50765696784075,
+      "avg_speed_vehicle": 8.972671283479427
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3914,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.214826250860902,
+      "episode_reward": -44504.0,
+      "avg_waiting_vehicle": 255.03040367910066,
+      "avg_speed_vehicle": 8.21563812501833
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3912,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.884840700561288,
+      "episode_reward": -42692.0,
+      "avg_waiting_vehicle": 216.4176891615542,
+      "avg_speed_vehicle": 8.738120144233747
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3870,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.272695492682189,
+      "episode_reward": -45306.0,
+      "avg_waiting_vehicle": 245.80852713178294,
+      "avg_speed_vehicle": 8.397596172749733
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3896,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.455870115070381,
+      "episode_reward": -43990.0,
+      "avg_waiting_vehicle": 242.00539014373717,
+      "avg_speed_vehicle": 8.397810197814605
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3904,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.399400735112888,
+      "episode_reward": -40387.0,
+      "avg_waiting_vehicle": 196.36296106557376,
+      "avg_speed_vehicle": 9.278821670995853
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3846,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.242547333515868,
+      "episode_reward": -40832.0,
+      "avg_waiting_vehicle": 246.88273530941237,
+      "avg_speed_vehicle": 8.585089845546454
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3803,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.452347447885932,
+      "episode_reward": -44019.0,
+      "avg_waiting_vehicle": 241.23981067578228,
+      "avg_speed_vehicle": 8.644536905823893
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3823,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.482753214179066,
+      "episode_reward": -43935.0,
+      "avg_waiting_vehicle": 239.87601360188333,
+      "avg_speed_vehicle": 8.638374142174596
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3886,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 5.676321628211993,
+      "episode_reward": -37375.0,
+      "avg_waiting_vehicle": 191.9336078229542,
+      "avg_speed_vehicle": 9.479534259786533
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3866,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.234120689588446,
+      "episode_reward": -45551.0,
+      "avg_waiting_vehicle": 247.6722710812209,
+      "avg_speed_vehicle": 8.438741935693123
+    },
+    {
+      "steps": 3600,
+      "vehicles": 3902,
+      "avg_waiting_step": 0.0,
+      "avg_speed_step": 4.873729644355767,
+      "episode_reward": -44311.0,
+      "avg_waiting_vehicle": 219.50666324961557,
+      "avg_speed_vehicle": 8.714776297338146
+    }
+  ]
+}

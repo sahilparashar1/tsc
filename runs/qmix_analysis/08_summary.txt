@@ -1,0 +1,101 @@
+
+QMIX TRAINING ANALYSIS REPORT
+Generated: 2026-02-12 20:19:27
+
+================================================================================
+CONFIGURATION
+================================================================================
+
+Network Architecture:
+  Agents (Traffic Lights): 17
+  Observation Dimension: 21
+  State Dimension: 357
+
+Training Parameters:
+  Learning Rate: 0.0005
+  Discount Factor: 0.99
+  Batch Size: 16
+  Episodes: 200
+
+================================================================================
+PERFORMANCE SUMMARY
+================================================================================
+
+PRIMARY METRIC - Waiting Time (Lower is Better):
+  Episode 1:              227.48 seconds
+  Episode 200:              219.51 seconds
+  Best Episode:           191.93 seconds (Episode 198)
+  Worst Episode:          309.12 seconds (Episode 60)
+  Average:                250.88 ± 23.45 seconds
+  Last 5 Episodes:        228.05 ± 20.38 seconds
+  
+  Overall Improvement:    +3.5%
+  Per-Episode (Avg):      -0.12 seconds
+
+SECONDARY METRIC - Speed (Higher is Better):
+  Episode 1:              8.70 m/s (31.33 km/h)
+  Episode 200:              8.71 m/s (31.37 km/h)
+  Best Episode:           9.48 m/s (34.13 km/h) (Episode 198)
+  Worst Episode:          7.64 m/s (27.50 km/h) (Episode 49)
+  Average:                8.38 ± 0.33 m/s
+  Last 5 Episodes:        8.78 ± 0.36 m/s
+  
+  Overall Improvement:    +0.2%
+
+TRAINING METRIC - Episode Reward:
+  Best Reward:            -37375.000
+  Worst Reward:           -54251.000
+  Average Reward:         -45554.070 ± +3036.982
+  Final Episode Reward:   -44311.000
+  Total Cumulative:       -9110814.000
+
+================================================================================
+CONVERGENCE ANALYSIS
+================================================================================
+
+Early Phase (Episodes 1-66):
+  Avg Waiting Time: 255.42s
+  Avg Speed: 8.33m/s
+
+Mid Phase (Episodes 67-133):
+  Avg Waiting Time: 257.03s
+  Avg Speed: 8.30m/s
+
+Late Phase (Episodes 134-200):
+  Avg Waiting Time: 240.27s
+  Avg Speed: 8.52m/s
+
+Stability (Std Dev in Late Phase):
+  Waiting Time: 20.38s
+  Speed: 0.36m/s
+
+================================================================================
+CORRELATION ANALYSIS
+================================================================================
+
+Waiting Time vs Speed:      r = -0.900
+Reward vs Waiting Time:     r = -0.752
+Reward vs Speed:            r = +0.699
+
+Interpretation:
+  - Strong negative correlation between waiting time and speed indicates network
+    is learning the correct optimization objective
+  - Reward signal should correlate strongly with waiting time for good learning
+
+================================================================================
+FINAL SIMULATION RESULTS
+================================================================================
+
+Total Vehicles:             3,918
+Simulation Duration:        3,600 steps
+Avg Waiting Time (Step):    0.00 seconds
+Avg Speed (Step):           6.12 m/s (22.05 km/h)
+Avg Waiting Time (Vehicle): 166.89 seconds
+Avg Speed (Vehicle):        9.63 m/s (34.68 km/h)
+
+================================================================================
+ANALYSIS COMPLETE
+================================================================================
+
+The training shows successful convergence.
+Check generated visualizations for detailed trends and analysis.

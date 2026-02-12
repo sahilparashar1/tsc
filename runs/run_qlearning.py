@@ -18,7 +18,7 @@ from collections import defaultdict
 import traci
 
 # Configuration
-SUMO_CONFIG = r"..\Sioux\data\exp_0.sumocfg"
+SUMO_CONFIG = r"..\Sioux\data\netowrk\exp.sumocfg"
 USE_GUI = False  # Set to True to use sumo-gui
 
 # Q-Learning Hyperparameters
@@ -35,7 +35,7 @@ YELLOW_TIME = 5              # Yellow time (handled by SUMO)
 DECISION_INTERVAL = 2        # Steps between decisions
 
 # Training Configuration
-NUM_EPISODES = 5            # Number of training episodes
+NUM_EPISODES = 10            # Number of training episodes
 
 # Action constants
 ACTION_KEEP = 0    # Keep current phase

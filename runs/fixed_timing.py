@@ -8,7 +8,7 @@ import sys
 import traci
 
 # Configuration
-SUMO_CONFIG = r"..\Sioux\data\exp_0.sumocfg"
+SUMO_CONFIG = r"..\Sioux\data\network\exp.sumocfg"
 USE_GUI = False  # Set to True to use sumo-gui instead of sumo
 
 def run_simulation():

@@ -16,6 +16,7 @@ from typing import Tuple, List, Optional, Dict
 from collections import deque
 import random
 import pickle
+import gc
 
 
 class DRQNAgent(nn.Module):
@@ -71,9 +72,13 @@ class DRQNAgent(nn.Module):
         # Feature extraction
         x = F.relu(self.fc1(obs))  # [batch, seq_len, hidden_dim]
         
-        # Initialize hidden state if not provided
+        # Initialize hidden state if not provided (on CPU to save memory)
         if hidden_state is None:
-            hidden_state = torch.zeros(1, batch_size, self.rnn_hidden_dim, device=obs.device)
+            hidden_state = torch.zeros(1, batch_size, self.rnn_hidden_dim, device='cpu')
+        
+        # Move to target device if needed
+        if hidden_state.device != obs.device:
+            hidden_state = hidden_state.to(obs.device)
             
         # Recurrent processing
         x, new_hidden = self.gru(x, hidden_state)  # [batch, seq_len, rnn_hidden_dim]
@@ -83,9 +88,10 @@ class DRQNAgent(nn.Module):
         
         return q_values, new_hidden
     
-    def init_hidden(self, batch_size: int, device: torch.device) -> torch.Tensor:
-        """Initialize hidden state for the GRU."""
-        return torch.zeros(1, batch_size, self.rnn_hidden_dim, device=device)
+    def init_hidden(self, batch_size: int, device: torch.device = None) -> torch.Tensor:
+        """Initialize hidden state for the GRU. Keep on CPU to save GPU memory."""
+        # Initialize on CPU to save GPU memory; will be moved to device during forward pass
+        return torch.zeros(1, batch_size, self.rnn_hidden_dim, device='cpu')
 
 
 class QMIXMixingNetwork(nn.Module):
@@ -383,6 +389,10 @@ class MaxPressureReward:
     def __init__(self, flickering_penalty: float = 0.1):
         self.flickering_penalty = flickering_penalty
         self.last_actions = {}
+        # scale final scalar reward (useful if rewards are summed across agents)
+        self.reward_scale = 1.0
+        # optional clipping of final reward magnitude
+        self.clip = None
         
     def compute(
         self,
@@ -439,21 +449,31 @@ class MaxPressureReward:
         incoming = states['incoming_queues']  # [batch, n_agents, n_lanes]
         outgoing = states['outgoing_capacity']  # [batch, n_agents, n_lanes]
         
-        # Sum across lanes
+        # Sum across lanes -> per-agent values
         incoming_sum = incoming.sum(dim=-1)  # [batch, n_agents]
         outgoing_sum = outgoing.sum(dim=-1)  # [batch, n_agents]
-        
-        # Max pressure reward per agent
-        base_rewards = -incoming_sum + outgoing_sum
-        
-        # Flickering penalty
+
+        # Max pressure reward per agent (higher is better)
+        base_rewards = -incoming_sum + outgoing_sum  # [batch, n_agents]
+
+        # Flickering penalty per agent
         if last_actions is not None:
             flickering = (actions != last_actions).float()
             penalties = self.flickering_penalty * flickering
             base_rewards = base_rewards - penalties
-            
-        # Sum across agents for global reward
-        return base_rewards.sum(dim=-1)
+
+        # Aggregate across agents into a single scalar per timestep.
+        # Use mean instead of sum to keep reward scale consistent when agent count changes.
+        global_rewards = base_rewards.mean(dim=-1)  # [batch]
+
+        # Apply scaling and optional clipping
+        if self.reward_scale != 1.0:
+            global_rewards = global_rewards * self.reward_scale
+
+        if self.clip is not None:
+            global_rewards = torch.clamp(global_rewards, -self.clip, self.clip)
+
+        return global_rewards
 
 
 class QMIXTrainer:
@@ -468,12 +488,15 @@ class QMIXTrainer:
         gamma: float = 0.99,
         target_update_freq: int = 200,
         grad_clip: float = 10.0,
-        device: str = 'cuda' if torch.cuda.is_available() else 'cpu'
+        device: str = 'cuda' if torch.cuda.is_available() else 'cpu',
+        reward_normalize: bool = True
     ):
         self.device = torch.device(device)
         self.gamma = gamma
         self.target_update_freq = target_update_freq
         self.grad_clip = grad_clip
+        # If True, divide buffered rewards by number of agents to normalize magnitude
+        self.reward_normalize = reward_normalize
         
         # Online and target networks
         self.qmix = qmix_network.to(self.device)
@@ -500,57 +523,85 @@ class QMIXTrainer:
         """Perform one training step."""
         if len(self.replay_buffer) < batch_size:
             return None
+        
+        try:
+            # Sample batch
+            batch = self.replay_buffer.sample(batch_size)
             
-        # Sample batch
-        batch = self.replay_buffer.sample(batch_size)
-        
-        # Move to device
-        obs = batch['obs'].to(self.device)
-        state = batch['state'].to(self.device)
-        actions = batch['actions'].to(self.device)
-        rewards = batch['rewards'].to(self.device)
-        next_obs = batch['next_obs'].to(self.device)
-        next_state = batch['next_state'].to(self.device)
-        dones = batch['dones'].to(self.device)
-        mask = batch['mask'].to(self.device)
-        
-        # Compute Q_tot for current state-action
-        q_tot, _ = self.qmix(obs, state, actions)
-        q_tot = q_tot.squeeze(-1)  # [batch, seq_len]
-        
-        # Compute target Q_tot
-        with torch.no_grad():
-            # Get max Q-values from target network for next state
-            target_q_values, _ = self.target_qmix.get_agent_q_values(next_obs)
+            # Move to device
+            obs = batch['obs'].to(self.device)
+            state = batch['state'].to(self.device)
+            actions = batch['actions'].to(self.device)
+            rewards = batch['rewards'].to(self.device)
+            next_obs = batch['next_obs'].to(self.device)
+            next_state = batch['next_state'].to(self.device)
+            dones = batch['dones'].to(self.device)
+            mask = batch['mask'].to(self.device)
+
+            # Normalize reward magnitude (useful if environment sums per-agent rewards)
+            if self.reward_normalize:
+                # avoid dividing by zero
+                n_agents = max(1, getattr(self.qmix, 'n_agents', 1))
+                rewards = rewards / float(n_agents)
             
-            # Greedy action selection
-            target_actions = torch.stack([
-                q.argmax(dim=-1) for q in target_q_values
-            ], dim=-1)
+            # Compute Q_tot for current state-action
+            q_tot, _ = self.qmix(obs, state, actions)
+            q_tot = q_tot.squeeze(-1)  # [batch, seq_len]
             
             # Compute target Q_tot
-            target_q_tot, _ = self.target_qmix(next_obs, next_state, target_actions)
-            target_q_tot = target_q_tot.squeeze(-1)
+            with torch.no_grad():
+                # Get max Q-values from target network for next state
+                target_q_values, _ = self.target_qmix.get_agent_q_values(next_obs)
+                
+                # Greedy action selection
+                target_actions = torch.stack([
+                    q.argmax(dim=-1) for q in target_q_values
+                ], dim=-1)
+                
+                # Compute target Q_tot
+                target_q_tot, _ = self.target_qmix(next_obs, next_state, target_actions)
+                target_q_tot = target_q_tot.squeeze(-1)
+                
+                # TD target
+                targets = rewards + self.gamma * (1 - dones) * target_q_tot
+                
+            # Masked loss (ignore padded timesteps)
+            td_error = (q_tot - targets) * mask
+            loss = (td_error ** 2).sum() / mask.sum()
             
-            # TD target
-            targets = rewards + self.gamma * (1 - dones) * target_q_tot
+            # Optimize
+            self.optimizer.zero_grad()
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(self.qmix.parameters(), self.grad_clip)
+            self.optimizer.step()
             
-        # Masked loss (ignore padded timesteps)
-        td_error = (q_tot - targets) * mask
-        loss = (td_error ** 2).sum() / mask.sum()
+            # Update target network
+            self.update_count += 1
+            if self.update_count % self.target_update_freq == 0:
+                self.target_qmix.load_state_dict(self.qmix.state_dict())
+            
+            loss_val = loss.item()
+            
+            # Clear intermediate tensors and cache
+            del obs, state, actions, rewards, next_obs, next_state, dones, mask
+            del q_tot, target_q_values, target_actions, target_q_tot, targets, td_error, loss
+            del batch
+            
+            return loss_val
         
-        # Optimize
-        self.optimizer.zero_grad()
-        loss.backward()
-        torch.nn.utils.clip_grad_norm_(self.qmix.parameters(), self.grad_clip)
-        self.optimizer.step()
-        
-        # Update target network
-        self.update_count += 1
-        if self.update_count % self.target_update_freq == 0:
-            self.target_qmix.load_state_dict(self.qmix.state_dict())
-            
-        return loss.item()
+        except RuntimeError as e:
+            if "CUDA out of memory" in str(e):
+                print("\n[WARNING] CUDA out of memory during training step.")
+                self.clear_cache()
+                return None
+            else:
+                raise
+    
+    def clear_cache(self):
+        """Clear GPU and CPU cache to free memory."""
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        gc.collect()
     
     def select_actions(
         self,
@@ -566,7 +617,7 @@ class QMIXTrainer:
             actions = []
             for q in q_values:
                 if random.random() < epsilon:
-                    action = torch.randint(0, q.shape[-1], (q.shape[0], q.shape[1]))
+                    action = torch.randint(0, q.shape[-1], (q.shape[0], q.shape[1]), device=self.device)
                 else:
                     action = q.argmax(dim=-1)
                 actions.append(action)

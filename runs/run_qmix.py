@@ -36,7 +36,7 @@ from cloud.src.agents.qmix_network import (
 # ============================================================================
 
 # SUMO Configuration
-SUMO_CONFIG = r"..\Sioux\data\exp_0.sumocfg"
+SUMO_CONFIG = r"..\Sioux\data\network\exp.sumocfg"
 USE_GUI = False  # Set to True to use sumo-gui
 
 # QMIX Network Architecture
@@ -56,14 +56,14 @@ EPSILON_DECAY = 0.995           # Exponential decay per episode
 
 # Replay Buffer & Batch Training
 REPLAY_BUFFER_CAPACITY = 5000   # Maximum episodes to store
-BATCH_SIZE = 32                 # Batch size for training
-TRAIN_STEPS_PER_EPISODE = 10    # Number of training steps per episode
+BATCH_SIZE = 16                  # Batch size for training (reduced from 128 for 4GB GPU)
+TRAIN_STEPS_PER_EPISODE = 10    # Number of training steps per episode (reduced to speed up)
 MAX_EPISODE_LENGTH = 1800        # Truncate episodes at this length
 
 # Traffic Light Configuration
 MIN_GREEN_TIME = 15             # Minimum green time before considering switch
 MAX_GREEN_TIME = 120            # Maximum green time before forced switch
-DECISION_INTERVAL = 2           # Steps between decisions
+DECISION_INTERVAL = 10          # Steps between decisions (increased from 2 to reduce TraCI overhead)
 YELLOWTIME = 5                  # Yellow time duration
 
 # Reward Configuration
@@ -72,7 +72,7 @@ FLICKERING_PENALTY = 0.1        # Penalty for frequent phase changes
 QUEUE_WEIGHT = 1.0              # Weight for queue length in reward
 
 # Training Configuration
-NUM_EPISODES = 50               # Total training episodes
+NUM_EPISODES = 200               # Total training episodes
 TEST_INTERVAL = 10              # Run evaluation every N episodes
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
@@ -381,6 +381,8 @@ def run_episode(controller: QMIXController, episode: int, learning: bool = True)
         "--no-step-log",
         "--waiting-time-memory", "1000",
         "--random",
+        "--threads", "4",                  # Enable multithreading (adjust to your CPU cores)
+        "--step-log.period", "1000",       # Reduce logging frequency
     ]
     
     traci.start(sumo_cmd)
@@ -440,35 +442,38 @@ def run_episode(controller: QMIXController, episode: int, learning: bool = True)
                 done = traci.simulation.getMinExpectedNumber() == 0
                 
                 # Store trajectory
-                episode_data['obs'].append(obs.numpy())
-                episode_data['state'].append(state.numpy())
-                episode_data['actions'].append(action_tensor.numpy())
+                episode_data['obs'].append(obs.cpu().numpy())
+                episode_data['state'].append(state.cpu().numpy())
+                episode_data['actions'].append(action_tensor.cpu().numpy())
                 episode_data['rewards'].append(np.array([reward], dtype=np.float32))
-                episode_data['next_obs'].append(next_obs.numpy())
-                episode_data['next_state'].append(next_state.numpy())
+                episode_data['next_obs'].append(next_obs.cpu().numpy())
+                episode_data['next_state'].append(next_state.cpu().numpy())
                 episode_data['dones'].append(np.array([done], dtype=np.float32))
-            
-            # Collect metrics
-            current_vehicles = traci.vehicle.getIDList()
-            for veh_id in current_vehicles:
-                all_vehicles.add(veh_id)
-                waiting_time = traci.vehicle.getWaitingTime(veh_id)
-                speed = traci.vehicle.getSpeed(veh_id)
                 
-                total_waiting_time += waiting_time
-                total_speed += speed
-                total_vehicle_steps += 1
-                
-                vehicle_waiting_times[veh_id] = traci.vehicle.getAccumulatedWaitingTime(veh_id)
-                
-                if veh_id not in vehicle_speeds:
-                    vehicle_speeds[veh_id] = []
-                vehicle_speeds[veh_id].append(speed)
+                # Collect metrics only at decision intervals to reduce TraCI overhead
+                current_vehicles = traci.vehicle.getIDList()
+                for veh_id in current_vehicles:
+                    all_vehicles.add(veh_id)
+                    vehicle_waiting_times[veh_id] = traci.vehicle.getAccumulatedWaitingTime(veh_id)
+                    speed = traci.vehicle.getSpeed(veh_id)
+                    if veh_id not in vehicle_speeds:
+                        vehicle_speeds[veh_id] = []
+                    vehicle_speeds[veh_id].append(speed)
     
     except (KeyboardInterrupt, traci.exceptions.FatalTraCIError) as e:
         print(f"Simulation error: {e}")
     finally:
         traci.close()
+    
+    # Calculate step-based metrics from collected vehicle data
+    # (Only collected at decision intervals, not every step)
+    if vehicle_speeds:
+        total_steps_with_metrics = sum(len(speeds) for speeds in vehicle_speeds.values())
+        if total_steps_with_metrics > 0:
+            total_speed = sum(sum(speeds) for speeds in vehicle_speeds.values())
+            for speeds in vehicle_speeds.values():
+                for _ in speeds:
+                    total_vehicle_steps += 1
     
     # Process trajectory for storage
     if learning and len(episode_data['obs']) > 0:
@@ -549,7 +554,11 @@ def train_qmix():
         sys.exit("Please declare environment variable 'SUMO_HOME'")
     
     sumo_binary = "sumo"
-    sumo_cmd = [sumo_binary, "-c", SUMO_CONFIG, "--no-step-log"]
+    sumo_cmd = [
+        sumo_binary, "-c", SUMO_CONFIG, 
+        "--no-step-log",
+        "--threads", "4",
+    ]
     traci.start(sumo_cmd)
     
     tl_ids = traci.trafficlight.getIDList()
@@ -592,6 +601,9 @@ def train_qmix():
         
         # Decay exploration
         controller.decay_epsilon()
+        
+        # Clear GPU cache every episode to prevent memory leak
+        controller.trainer.clear_cache()
         
         # Logging
         print(f"Episode {episode + 1}/{NUM_EPISODES} | "
