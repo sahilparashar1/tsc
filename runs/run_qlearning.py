@@ -16,26 +16,35 @@ import random
 import numpy as np
 from collections import defaultdict
 import traci
+import pickle
+import json
 
 # Configuration
-SUMO_CONFIG = r"..\Sioux\data\netowrk\exp.sumocfg"
+SUMO_CONFIG = r"..\Sioux\data\network\exp.sumocfg"
 USE_GUI = False  # Set to True to use sumo-gui
 
 # Q-Learning Hyperparameters
-LEARNING_RATE = 0.1          # Alpha
-DISCOUNT_FACTOR = 0       # Gamma
+LEARNING_RATE = 5e-4         # Alpha (aligned with QMIX)
+DISCOUNT_FACTOR = 0.99       # Gamma (aligned with QMIX)
 EPSILON_START = 1.0          # Initial exploration rate
-EPSILON_MIN = 0.01           # Minimum exploration rate
+EPSILON_MIN = 0.05           # Minimum exploration rate (aligned with QMIX)
 EPSILON_DECAY = 0.995        # Decay rate per episode
 
 # Traffic Light Configuration
 MIN_GREEN_TIME = 15          # Minimum green time before considering switch
-MAX_GREEN_TIME = 120          # Maximum green time before forced switch
+MAX_GREEN_TIME = 120          # Maximum green time before forced switch (aligned with QMIX)
 YELLOW_TIME = 5              # Yellow time (handled by SUMO)
-DECISION_INTERVAL = 2        # Steps between decisions
+DECISION_INTERVAL = 10        # Steps between decisions (aligned with QMIX)
 
 # Training Configuration
-NUM_EPISODES = 10            # Number of training episodes
+NUM_EPISODES = 200            # Number of training episodes
+MAX_EPISODE_DURATION = 3600   # Max seconds per episode (1 hour to match routes.xml)
+
+# Checkpoint Configuration
+CHECKPOINT_DIR = "qlearning_checkpoints"
+BEST_AGENTS_FILE = os.path.join(CHECKPOINT_DIR, "best_agents.pkl")
+TRAINING_LOG_FILE = os.path.join(CHECKPOINT_DIR, "training_log.json")
+CHECKPOINT_INTERVAL = 10  # Save checkpoint every N episodes
 
 # Action constants
 ACTION_KEEP = 0    # Keep current phase
@@ -262,6 +271,63 @@ class TrafficLightController:
         return sum(a.epsilon for a in self.agents.values()) / len(self.agents)
 
 
+def save_agents(controller, filepath):
+    """
+    Save trained Q-learning agents to disk.
+    
+    Args:
+        controller: TrafficLightController with trained agents
+        filepath: Path to save the agents pickle file
+    """
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    
+    # Extract agent data (q_tables and hyperparameters)
+    agents_data = {}
+    for tl_id, agent in controller.agents.items():
+        agents_data[tl_id] = {
+            'q_table': dict(agent.q_table),  # Convert defaultdict to dict for pickling
+            'num_phases': agent.num_phases,
+            'learning_rate': agent.learning_rate,
+            'discount_factor': agent.discount_factor,
+        }
+    
+    with open(filepath, 'wb') as f:
+        pickle.dump(agents_data, f)
+    
+    print(f"Agents saved to {filepath}")
+
+
+def load_agents(controller, filepath):
+    """
+    Load trained Q-learning agents from disk.
+    
+    Args:
+        controller: TrafficLightController to load agents into
+        filepath: Path to load the agents pickle file from
+    
+    Returns:
+        True if agents were loaded successfully, False otherwise
+    """
+    if not os.path.exists(filepath):
+        print(f"No saved agents found at {filepath}")
+        return False
+    
+    with open(filepath, 'rb') as f:
+        agents_data = pickle.load(f)
+    
+    # Restore agent data
+    for tl_id, data in agents_data.items():
+        if tl_id in controller.agents:
+            agent = controller.agents[tl_id]
+            # Restore Q-table as defaultdict
+            agent.q_table = defaultdict(lambda: np.zeros(NUM_ACTIONS))
+            for state, q_values in data['q_table'].items():
+                agent.q_table[state] = np.array(q_values)
+    
+    print(f"Agents loaded from {filepath}")
+    return True
+
+
 def run_episode(controller, episode, learning=True):
     """Run a single simulation episode."""
     
@@ -274,7 +340,7 @@ def run_episode(controller, episode, learning=True):
         "-c", SUMO_CONFIG,
         "--no-step-log",
         "--waiting-time-memory", "1000",
-        "--random",
+        "--threads", "4",                  # Enable multithreading (adjust to your CPU cores)
     ]
     
     traci.start(sumo_cmd)
@@ -299,6 +365,14 @@ def run_episode(controller, episode, learning=True):
         while traci.simulation.getMinExpectedNumber() > 0:
             traci.simulationStep()
             step += 1
+            
+            # Stop episode if max duration reached (each step = 0.1 seconds)
+            if step * 0.1 >= MAX_EPISODE_DURATION:
+                break
+            
+            # Early termination: stop if all vehicles have exited
+            if traci.vehicle.getIDCount() == 0:
+                break
             
             # Make decisions at intervals
             if step % DECISION_INTERVAL == 0:
@@ -372,6 +446,13 @@ def train_and_evaluate():
     controller = TrafficLightController()
     episode_results = []
     
+    # Initialize checkpoint directory
+    os.makedirs(CHECKPOINT_DIR, exist_ok=True)
+    
+    # Track best performance
+    best_waiting_time = float('inf')
+    best_episode = -1
+    
     # Training phase
     for episode in range(NUM_EPISODES):
         results = run_episode(controller, episode, learning=True)
@@ -379,14 +460,32 @@ def train_and_evaluate():
         
         controller.decay_all_epsilon()
         
+        # Save agents if this is the best episode so far
+        if results['avg_waiting_vehicle'] < best_waiting_time:
+            best_waiting_time = results['avg_waiting_vehicle']
+            best_episode = episode + 1
+            save_agents(controller, BEST_AGENTS_FILE)
+            print(f"  ✓ New best! Saved agents.")
+        
+        # Save checkpoint every N episodes
+        if (episode + 1) % CHECKPOINT_INTERVAL == 0:
+            checkpoint_file = os.path.join(CHECKPOINT_DIR, f"checkpoint_episode_{episode + 1}.pkl")
+            save_agents(controller, checkpoint_file)
+            print(f"  ✓ Checkpoint saved at episode {episode + 1}")
+        
         print(f"Episode {episode + 1}/{NUM_EPISODES}: "
               f"Vehicles={results['vehicles']}, "
               f"Avg Wait={results['avg_waiting_vehicle']:.2f}s, "
               f"Avg Speed={results['avg_speed_vehicle']:.2f}m/s, "
               f"ε={controller.get_avg_epsilon():.3f}")
     
-    # Final evaluation (no exploration)
+    # Load best agents for final evaluation
     print("\n" + "-" * 70)
+    print(f"Loading best agents from episode {best_episode}...")
+    controller.reset_agents()
+    load_agents(controller, BEST_AGENTS_FILE)
+    
+    # Final evaluation (no exploration)
     print("Running final evaluation (no exploration, pure exploitation)...")
     
     for agent in controller.agents.values():
@@ -429,6 +528,45 @@ def train_and_evaluate():
         total_states += num_states
         print(f"  {tl_id}: {num_states} states, {agent.num_phases} phases")
     print(f"  Total unique states learned: {total_states}")
+    
+    # Save results to JSON
+    results_dir = "qlearning_results"
+    os.makedirs(results_dir, exist_ok=True)
+    
+    def convert_to_native(obj):
+        """Recursively convert numpy types to Python native types."""
+        if isinstance(obj, dict):
+            return {k: convert_to_native(v) for k, v in obj.items()}
+        elif isinstance(obj, (list, tuple)):
+            return [convert_to_native(item) for item in obj]
+        elif isinstance(obj, (np.integer, np.floating)):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        else:
+            return obj
+    
+    results_file = os.path.join(results_dir, "qlearning_training_results.json")
+    with open(results_file, 'w') as f:
+        json.dump({
+            'configuration': {
+                'learning_rate': LEARNING_RATE,
+                'discount_factor': DISCOUNT_FACTOR,
+                'epsilon_start': EPSILON_START,
+                'epsilon_min': EPSILON_MIN,
+                'epsilon_decay': EPSILON_DECAY,
+                'min_green_time': MIN_GREEN_TIME,
+                'max_green_time': MAX_GREEN_TIME,
+                'decision_interval': DECISION_INTERVAL,
+                'max_episode_duration': MAX_EPISODE_DURATION,
+                'num_episodes': NUM_EPISODES,
+                'num_agents': len(controller.agents),
+            },
+            'final_results': convert_to_native(final_results),
+            'episode_results': convert_to_native(episode_results)
+        }, f, indent=2)
+    
+    print(f"Results saved to {results_file}")
     
     return controller, final_results
 

@@ -3,3 +3,5 @@ data/*
 frontend
 __pycache__
 .vscode
+routes.rou.xml
+routes_qmix_2.rou.xml
