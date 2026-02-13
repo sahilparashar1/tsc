@@ -61,7 +61,7 @@ SIM_DURATION = 3600  # seconds
 RANDOM_TRIPS_P = 1.5  # average time between generated trips (seconds)
 
 QMIX_CHECKPOINT = os.path.join('..', 'qmix_checkpoints', 'qmix_best.pt')
-QLEARNING_CHECKPOINT = os.path.join('..', 'qlearning_checkpoints', 'best_agents.pkl')
+QLEARNING_CHECKPOINT = os.path.join('..','runs','qlearning_checkpoints', 'best_agents.pkl')
 
 
 def generate_routes(output_path):
@@ -83,7 +83,7 @@ def run_fixed_simulation(routes_file):
                 '-r', os.path.abspath(routes_file),
                 '--no-step-log',
                 '--waiting-time-memory', '1000',
-                '--step-length', '0.1',
+                '--step-length', '1',
                 '--threads', '4']
 
     traci.start(sumo_cmd)
@@ -136,7 +136,7 @@ def run_qmix_simulation(routes_file):
                 '-r', os.path.abspath(routes_file),
                 '--no-step-log',
                 '--waiting-time-memory', '1000',
-                '--step-length', '0.1',
+                '--step-length', '1',
                 '--threads', '4']
 
     traci.start(sumo_cmd)
@@ -211,7 +211,7 @@ def run_qlearning_simulation(routes_file):
                 '-r', os.path.abspath(routes_file),
                 '--no-step-log',
                 '--waiting-time-memory', '1000',
-                '--step-length', '0.1',
+                '--step-length', '1',
                 '--threads', '4']
 
     traci.start(sumo_cmd)

@@ -1,0 +1,68 @@
+{
+  "config": {
+    "num_simulations": 10,
+    "sim_duration": 3600
+  },
+  "results": [
+    {
+      "steps": 3933,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 73.39416666666666,
+      "avg_speed_vehicle": 7.884376651282125
+    },
+    {
+      "steps": 4169,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 73.60375,
+      "avg_speed_vehicle": 7.820403728893235
+    },
+    {
+      "steps": 4013,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 82.48625,
+      "avg_speed_vehicle": 7.610079837732306
+    },
+    {
+      "steps": 3919,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 74.72625,
+      "avg_speed_vehicle": 7.875851184729772
+    },
+    {
+      "steps": 4069,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 77.79583333333333,
+      "avg_speed_vehicle": 7.609426943787921
+    },
+    {
+      "steps": 4064,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 73.05666666666667,
+      "avg_speed_vehicle": 7.869142808604247
+    },
+    {
+      "steps": 4061,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 75.96833333333333,
+      "avg_speed_vehicle": 7.71837561742877
+    },
+    {
+      "steps": 3956,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 75.56708333333333,
+      "avg_speed_vehicle": 7.706618913975813
+    },
+    {
+      "steps": 3960,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 74.52583333333334,
+      "avg_speed_vehicle": 7.8038442946286555
+    },
+    {
+      "steps": 3975,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 76.01125,
+      "avg_speed_vehicle": 7.806853199754605
+    }
+  ]
+}

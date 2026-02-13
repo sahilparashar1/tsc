@@ -1,0 +1,68 @@
+{
+  "config": {
+    "num_simulations": 10,
+    "sim_duration": 3600
+  },
+  "results": [
+    {
+      "steps": 3905,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 56.81,
+      "avg_speed_vehicle": 8.382780268915912
+    },
+    {
+      "steps": 3924,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 60.155,
+      "avg_speed_vehicle": 8.293063740087435
+    },
+    {
+      "steps": 3822,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 51.845,
+      "avg_speed_vehicle": 8.407364273565053
+    },
+    {
+      "steps": 3813,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 59.39541666666667,
+      "avg_speed_vehicle": 8.257298100517206
+    },
+    {
+      "steps": 3912,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 63.284166666666664,
+      "avg_speed_vehicle": 8.026159522383395
+    },
+    {
+      "steps": 3883,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 54.282916666666665,
+      "avg_speed_vehicle": 8.380168911279894
+    },
+    {
+      "steps": 3811,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 54.10625,
+      "avg_speed_vehicle": 8.403354294788585
+    },
+    {
+      "steps": 3846,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 60.17041666666667,
+      "avg_speed_vehicle": 8.110666309886298
+    },
+    {
+      "steps": 3852,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 60.7225,
+      "avg_speed_vehicle": 8.151867670229315
+    },
+    {
+      "steps": 3849,
+      "vehicles": 2400,
+      "avg_waiting_vehicle": 55.540416666666665,
+      "avg_speed_vehicle": 8.330538271977703
+    }
+  ]
+}
